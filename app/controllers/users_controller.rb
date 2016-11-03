@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       flash[:success] = "Welcome to the Sample App!" #flashというハッシュを作成してmessage_typeキーにsuccessを、messageにWelcome to the Sample App!をいれている
       redirect_to @user # redirect_to user_path(@user)と同様
     else
