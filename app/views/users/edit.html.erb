@@ -1,0 +1,31 @@
+<h1>Profile Edit</h1>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_for(@user) do |f| %>
+            <%= render "shared/error_messages", object: f.object %>
+            
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+            
+            <%= f.label :sexes %>
+            <%= f.select :sexes, {"not known" => "0", "male（男性）" => "1", "female（女性）" => "2"} %>
+            
+            <%= f.label :email %>
+            <%= f.text_field :email %>
+            
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+            
+            <%= f.label :password_confirmation,"Confirmation" %>
+            <%= f.password_field :password_confirmation %>
+            
+            <%= f.label :area %>
+            <%= f.text_field :area %>
+            
+            <%= f.label :profile %>
+            <%= f.text_area :profile %>
+            
+            <%= f.submit "Update my account", class: "btn btn-large btn-primary" %>
+        <% end %>
+    </div>
+</div>

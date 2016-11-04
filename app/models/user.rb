@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
     ・passwordとpassword_confirmationをモデルに追加して、パスワードの確認が一致するか検証する。
     ・パスワードが正しいときに、ユーザーを返すauthenticateメソッドを提供する。
 =end
+    validates :area, length:{ maximum:50 }
+    validates :profile, length:{ minimum:2, maximum:1000 }
 end

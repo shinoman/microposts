@@ -2,3 +2,10 @@
     <%= gravatar_for @user %>
     <%= @user.name %>
 </h1>
+    <h4>性別</h4>
+    <% sex=["不明","男性","女性"] %>
+    <%= sex[@user.sexes] %>
+    <h4>居住地</h4>
+    <%= @user.area %>
+    <h4>自己紹介</h4>
+    <h6><%= simple_format(@user.profile) %></h6>
