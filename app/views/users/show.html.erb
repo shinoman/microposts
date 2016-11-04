@@ -1,11 +1,37 @@
-<h1>
-    <%= gravatar_for @user %>
-    <%= @user.name %>
-</h1>
-    <h4>性別</h4>
-    <% sex=["不明","男性","女性"] %>
-    <%= sex[@user.sexes] %>
-    <h4>居住地</h4>
-    <%= @user.area %>
-    <h4>自己紹介</h4>
-    <h6><%= simple_format(@user.profile) %></h6>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+        <h1>
+            <%= gravatar_for @user %>
+            <%= @user.name %>
+        </h1>
+        <h4>性別</h4>
+        <% sex=["不明","男性","女性"] %>
+        <%= sex[@user.sexes] %>
+        <h4>居住地</h4>
+        <%= @user.area %>
+        <h4>自己紹介</h4>
+        <h6><%= simple_format(@user.profile) %></h6>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if @user.microposts.any? %>
+      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <ol class="microposts">
+        <%= render @microposts %>
+<!--
+<%= render partial: 'microposts/micropost', collection: @microposts %>と同様 
+下の下の分でも下の分でも同じ
+<% @microposts.each do |micropost| %>
+  <%= render partial: 'microposts/micropost', locals: { micropost: micropost } %>
+<% end %>
+@micropostsからデータを一つ一つ取り出して、micropostというローカル変数として、パーシャルapp/views/microposts/_micropost.html.erbに渡している
+-->
+      </ol>
+    <% end %>
+  </div>
+</div>
+
+
+
+
