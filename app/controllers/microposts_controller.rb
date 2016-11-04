@@ -15,6 +15,29 @@ class MicropostsController < ApplicationController
 root_urlである/にリダイレクトを行い、失敗した場合はapp/views/static_pages/home.html.erbのテンプレートを表示します。
 =end
     
+    def destroy
+        @micropost = current_user.microposts.find_by(id: params[:id])
+=begin
+current_userはログイン中のユーザー
+user.micropostsはユーザーの全投稿なので、
+current_user.micropostsはログイン中の、つまり自分の投稿全てを取得できます。
+find_by という条件検索がついています。
+なので、この結果からid がparams[:id]と一致するものを検索しています。
+deleteボタンを押した際に、
+micropost/:id
+
+というURLが送信されてきますので、その;id部分から探し出し、削除しているという流れです。
+=end
+        return redirect_to root_url if @micropost.nil? #投稿が現在のユーザーのものでなければ、root_urlにリダイレクトする
+        @micropost.destroy
+        flash[:success] = "Micropost deleted"
+        redirect_to request.referrer || root_url 
+=begin
+referrerとは、該当ページに遷移する直前に閲覧されていた参照元（遷移元・リンク元）ページのURL
+redirect_to request.referrerがfalseがかnilの場合はroot_urlが実行される
+=end
+    end
+    
     private
     def micropost_params
         params.require(:micropost).permit(:content)
