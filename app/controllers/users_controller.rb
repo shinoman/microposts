@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, :logged_in, only: [:show, :edit, :update]
-  before_action :collation_user, only: [:edit]
+  before_action :set_user, :logged_in_user, only: [:show, :edit, :update]
+  before_action :collation_user, only:[:edit, :update]
   
   def show
   end
@@ -42,15 +42,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
-  def logged_in
-    if logged_in?
-      else
-        flash[:warning] = "ログインしてください。"
-        redirect_to "/login"
+  def collation_user
+    if @user != current_user
+      redirect_to root_url
     end
   end
   
-  def collation_user
-    @user = current_user
-  end
 end

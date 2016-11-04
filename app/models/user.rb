@@ -10,5 +10,13 @@ class User < ActiveRecord::Base
     ・パスワードが正しいときに、ユーザーを返すauthenticateメソッドを提供する。
 =end
     validates :area, length:{ maximum:50 }
-    validates :profile, length:{ minimum:2, maximum:1000 }
+    validates :profile, length:{ minimum:2, maximum:1000 },allow_blank: true
+    has_many :microposts #それぞれのユーザーは複数の投稿を持つことができる
+=begin
+belongs_to:userとhas_many:micropostsで自動生成されるメソッド
+user.microposts         ユーザーの全投稿
+microposts.user         投稿に関連されたユーザー
+user.microposts.new     ユーザーの新規投稿を作成
+user.microposts.create  ユーザーの投稿を作成して投稿
+=end
 end
