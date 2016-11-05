@@ -70,4 +70,18 @@ following_relationshipsからフォローしているユーザーのuser_idが�
 他のユーザーがfollowing_usersに含まれているかチェック
 =end
     end
+    
+    def feed_items
+    Micropost.where(user_id: following_user_ids + [self.id])
+=begin
+user_id：がフォローしているユーザーと自分のつぶやきを取得しています。
+following_user_idsは、Userモデルのhas_many :following_usersの部分で自動的に生成されたメソッドで、フォローしているユーザーのIDを配列で返します。
+配列同士は、+で要素を足し合わせることができます。
+self.id の self は、どのユーザーがこのコードを実行しようとしているかで変わります。
+例えば、 user1.feed_items とコーディングされた場合には、user1 がこのコードを実行しようとするユーザーとなり、self.id とは user1.id のことになります。
+これにより、フォロー中のユーザー達(following_user_ids)だけでなく、実行ユーザー自身のマイクロポストもfeed_itemsの中に含めるということです。
+=end
+    end
+    
+    
 end
