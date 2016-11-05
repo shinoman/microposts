@@ -24,3 +24,4 @@ production:
   <<: *default
   adapter: postgresql
   encoding: unicodepool: 5
+  database: shinoman-microposts-heroku_production
