@@ -2,7 +2,7 @@ class MicropostsController < ApplicationController
     before_action :logged_in_user, only: [:create] #createの実行前だけApplicationControllerにあるlogged_in_userを実行してログインしていないユーザーは/loginにリダイレクトする
     
     def create
-        @microposts = current_user.microposts.build(micropost_params)
+        @microposts = current_user.microposts.build(micropost_params) # current_user.microposts.buildはMicropost.new(user_id: current_user.id)と同じ
         if @microposts.save
             flash[:success] = "Micropost created!"
             redirect_to root_url
@@ -25,7 +25,6 @@ find_by という条件検索がついています。
 なので、この結果からid がparams[:id]と一致するものを検索しています。
 deleteボタンを押した際に、
 micropost/:id
-
 というURLが送信されてきますので、その;id部分から探し出し、削除しているという流れです。
 =end
         return redirect_to root_url if @micropost.nil? #投稿が現在のユーザーのものでなければ、root_urlにリダイレクトする
