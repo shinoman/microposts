@@ -12,8 +12,10 @@
 	        <h3 class="profile"><%= @user.name %></h3>
 	        <section class="user_info">
 		      <text>性別:</text>
-          <% sex=["不明","男性","女性"] %>
-          <%= sex[@user.sexes] %><br>
+          <% if @user.sexes.present? %>
+            <% sex=["不明","男性","女性"] %>
+            <%= sex[@user.sexes] %><br>
+          <% end %>
           <text>居住地:</text>
           <%= @user.area %><br>
           <text>自己紹介</text><br>

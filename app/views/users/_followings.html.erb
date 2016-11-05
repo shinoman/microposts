@@ -7,13 +7,15 @@
                     <div class="panel-heading">
 	                    <center><span class="user"><%= link_to f.name, f %></span></center>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body panel-info">
                 		<%= link_to gravatar_for(f, size: 80), f %>
-                        <text style="font-weight: bold;">性　別:</text>
-                        <% sex=["不明","男性","女性"] %>
-                        <%= sex[f.sexes] %>
+                        <text>性　別:</text>
+                        <% if @user.sexes.present? %>
+                          <% sex=["不明","男性","女性"] %>
+                          <%= sex[@user.sexes] %><br>
+                        <% end %>
                         <br>
-                        <text style="font-weight: bold;">居住地:</text>
+                        <text>居住地:</text>
                         <%= f.area %></h5>
                     </div>
                 </div>
