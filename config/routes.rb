@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     member do
       get "followings"
       get "followers"
-      get "microposts_post"
+      get "micro"
       get "followers"
       get "followings"
     end

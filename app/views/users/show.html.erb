@@ -26,7 +26,7 @@
       </div>
       <div class="panel panel-success">
         <div class="panel-body">
-		      <li><%= link_to "Microposts (#{ @user.microposts.count })", microposts_post_user_path(@user.id), remote: true %></li>
+		      <li><%= link_to "Microposts (#{ @user.microposts.count })", micro_user_path(@user.id), remote: true %></li>
 		      <li><%= link_to "Follower (#{ @follower.count })", followers_user_path(@user.id), remote: true %></li>
 		      <li><%= link_to "Following (#{ @following.count })",followings_user_path(@user.id), remote: true %></li>
 	      </div>
@@ -36,9 +36,7 @@
   <div class="col-md-9 microposts" id="user_info_pages">
     <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
-  <h3>Microposts (<%= @user.microposts.count %>)</h3>
-  <ol class="microposts">
-    <section><%= render @microposts %></section>
+    <section><%= render "micro" %></section></ol>
 <!--
 <%= render partial: 'microposts/micropost', collection: @microposts %>と同様 
 下の下の分でも下の分でも同じ
@@ -47,6 +45,7 @@
 <% end %>
 @micropostsからデータを一つ一つ取り出して、micropostというローカル変数として、パーシャルapp/views/microposts/_micropost.html.erbに渡している
 -->
+
     <% end %>
   </div>
 </div>

@@ -16,5 +16,6 @@ includes(:user)の部分は、つぶやきに含まれるユーザー情報を�
 :userはuserテーブルのこと
 =end
     end
+    @feed_item = @feed_items.page(params[:page])
   end
 end
