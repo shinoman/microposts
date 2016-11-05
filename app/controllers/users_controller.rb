@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
   before_action :set_user, :logged_in_user, only: [:show, :edit, :update]
   before_action :collation_user, only:[:edit, :update]
+  before_action :followers, :followings, only:[:show]
   
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.order(created_at: :desc) #ユーザーに紐付いたマイクロポストを作成日時が新しいものから取得し、@micropostsに代入しています。
+    @page = "1"
   end
   
   def new
@@ -34,6 +36,21 @@ class UsersController < ApplicationController
     end
   end
   
+  def followings
+    @user = User.find(params[:id])
+    @following = @user.following_users
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @follower = @user.follower_users
+  end
+  
+  def microposts_post
+    @user = User.find(params[:id])
+    @microposts = @user.microposts
+  end
+  
     private
     
   def user_params
@@ -49,5 +66,4 @@ class UsersController < ApplicationController
       redirect_to root_url
     end
   end
-  
 end

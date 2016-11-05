@@ -186,3 +186,48 @@ aside {
     margin-bottom: 5px;
   }
 }
+
+div.following{
+    padding-left: 5px;
+    padding-right: 5px;
+    .panel-heading{
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+}
+
+div.follower{
+    padding-left: 5px;
+    padding-right: 5px;
+    .panel-heading{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    }
+}
+h3.profile{
+  margin-top: 0px;
+}
+section.user_info{
+ margin-top: 0px !important;
+ text{
+   font-size: large;
+   font-weight: 500;
+ }
+p {
+    font-size: 1em;
+    line-height: 1em;
+ }
+}
+
+div.panel-heading{
+  span.user{
+    a{
+      color: white;
+      font-size: 1.1em;
+    }
+  }
+}

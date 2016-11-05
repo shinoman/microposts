@@ -1,25 +1,42 @@
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-3">
     <section class="user_info">
-        <h1>
+      <div class="panel panel-primary">
+	      <div class="panel-heading">
+		      <h1>
             <%= gravatar_for @user %>
-            <%= @user.name %>
-        </h1>
-        <h4>性別</h4>
-        <% sex=["不明","男性","女性"] %>
-        <%= sex[@user.sexes] %>
-        <h4>居住地</h4>
-        <%= @user.area %>
-        <h4>自己紹介</h4>
-        <h6><%= simple_format(@user.profile) %></h6>
+            <%= "Profile" %>
+          </h1>
+	      </div>
+	      <div class="panel-body">
+	        <h3 class="profile"><%= @user.name %></h3>
+	        <section class="user_info">
+		      <text>性別:</text>
+          <% sex=["不明","男性","女性"] %>
+          <%= sex[@user.sexes] %><br>
+          <text>居住地:</text>
+          <%= @user.area %><br>
+          <text>自己紹介</text><br>
+          <div class="col-md-12">
+          <%= simple_format(@user.profile) %></div>
+          </section>
+	      </div>
+      </div>
+      <div class="panel panel-success">
+        <div class="panel-body">
+		      <li><%= link_to "Microposts (#{ @user.microposts.count })", microposts_post_user_path(@user.id), remote: true %></li>
+		      <li><%= link_to "Follower (#{ @follower.count })", followers_user_path(@user.id), remote: true %></li>
+		      <li><%= link_to "Following (#{ @following.count })",followings_user_path(@user.id), remote: true %></li>
+	      </div>
+      </div>
     </section>
   </aside>
-  <div class="col-md-8">
+  <div class="col-md-9 microposts" id="user_info_pages">
     <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
+  <h3>Microposts (<%= @user.microposts.count %>)</h3>
+  <ol class="microposts">
+    <section><%= render @microposts %></section>
 <!--
 <%= render partial: 'microposts/micropost', collection: @microposts %>と同様 
 下の下の分でも下の分でも同じ
@@ -28,7 +45,6 @@
 <% end %>
 @micropostsからデータを一つ一つ取り出して、micropostというローカル変数として、パーシャルapp/views/microposts/_micropost.html.erbに渡している
 -->
-      </ol>
     <% end %>
   </div>
 </div>

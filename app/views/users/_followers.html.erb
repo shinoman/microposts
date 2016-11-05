@@ -1,0 +1,23 @@
+<% if logged_in? %>
+    <h3>Follower (<%= @follower.count %>)</h3>
+    <% @follower.each do |f| %>
+        <div class="col-md-4 follower">
+            <tr>
+                <div class="panel panel-primary">
+	                   <div class="panel-heading">
+	                    <center><span class="user"><%= link_to f.name, f %></span></center>
+	                   </div>
+	                   <div class="panel-body">
+                		<%= link_to gravatar_for(f, size: 80), f %>
+                        <text style="font-weight: bold;">性　別:</text>
+                        <% sex=["不明","男性","女性"] %>
+                        <%= sex[f.sexes] %>
+                        <br>
+                        <text style="font-weight: bold;">居住地:</text>
+                        <%= f.area %></h5>
+	                   </div>
+                </div>
+            </tr>
+        </div>
+    <% end %>
+<% end %>
