@@ -5,9 +5,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.order(created_at: :desc) #ユーザーに紐付いたマイクロポストを作成日時が新しいものから取得し、@micropostsに代入しています。
+    @microposts = @user.microposts.order(created_at: :desc).page(params[:page]) #ユーザーに紐付いたマイクロポストを作成日時が新しいものから取得し、@micropostsに代入しています。
     @page = "1"
-    @microposts_page = @microposts.page(params[:page])
   end
   
   def new
@@ -49,8 +48,7 @@ class UsersController < ApplicationController
   
   def micro
     @user = User.find(params[:id])
-    @microposts = @user.microposts
-    @microposts_page = @microposts.page(params[:page])
+    @microposts = @user.microposts(created_at: :desc).page(params[:page])
   end
   
     private
